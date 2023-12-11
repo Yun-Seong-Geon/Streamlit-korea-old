@@ -7,7 +7,20 @@ from st_pages import Page, Section, show_pages, add_page_title
 import matplotlib.font_manager as fm 
 import font as fn
 from st_aggrid import AgGrid
+import os
 
+@st.cache(allow_output_mutation=True)
+def fontRegistered(fontname):
+    font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
+    font_files = fm.findSystemFonts(fontpaths=font_dirs)
+
+    for font_file in font_files:
+        fm.fontManager.addfont(font_file)
+    fm._rebuild()  # 폰트 매니저를 재구축
+    plt.rc('font', family=fontname)  # 전역 폰트 설정
+
+font = 'SKYBORY'
+    
 add_page_title()
 
 show_pages(
@@ -120,8 +133,6 @@ def graphs(fontname):
     st.divider()
     노령화지수총인구수관계그래프(fontname)
     st.divider()
-
-font = "/font/SKYBORI.ttf"
 
 def main():
     with st.spinner('그래프 불러오는중..'):
