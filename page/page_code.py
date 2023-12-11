@@ -135,6 +135,7 @@ def graphs(fontname):
     st.divider()
 
 def main():
+    st.title(font_dirs = [os.getcwd() + '/font'])
     with st.spinner('그래프 불러오는중..'):
         graphs(font)
     pass
