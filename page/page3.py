@@ -13,14 +13,13 @@ import matplotlib.font_manager as fm
 
 import os
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data
 def fontRegistered(fontname):
     font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
 
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
-    fm._rebuild()  # 폰트 매니저를 재구축
     fm._load_fontmanager(try_read_cache=False)
 
 font = 'SKYBORY'
