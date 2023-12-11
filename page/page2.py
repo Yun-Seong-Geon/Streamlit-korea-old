@@ -10,9 +10,8 @@ from st_aggrid import AgGrid
 
 add_page_title()
 
-font_path = '../font/SKYBORI.ttf'
-font_prop = fm.FontProperties(fname=font_path)
-font = font_prop.get_name()
+
+font = 'AppleGothic'
 show_pages(
     [
         Page("app.py", "메인화면", "🏠"),
