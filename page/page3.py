@@ -22,6 +22,7 @@ def fontRegistered(fontname):
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
     fm._rebuild()  # 폰트 매니저를 재구축
+    fm._load_fontmanager(try_read_cache=False)
     plt.rc('font', family=fontname)  # 전역 폰트 설정
 
 font = 'SKYBORY'
@@ -75,8 +76,15 @@ x축은 총 인구수와 같은 지수나 수치를 나타낼 수 있으며, y�
 마지막 그래프는 버블 크기가 세 번째 변수(예를 들어 인구 규모)를 나타내는 버블 산점도로 보입니다. 
 이 유형의 차트는 축상의 두 수치 변수와 버블 크기에 의해 나타나는 세 번째 차원의 데이터에 대한 정보를 제공할 수 있습니다.
 '''
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
 
 def main():
+    fontRegistered()
+    fontNames = [f.name for f in fm.fontManager.ttflist]
+    font = st.selectbox("폰트 선택", unique(fontNames))
+    
     st.subheader('고령화 지수 관련 데이터를 분석 및 활용하는 홈페이지입니다.')
     st.divider()
     two.노령화지수분포그래프(font)
