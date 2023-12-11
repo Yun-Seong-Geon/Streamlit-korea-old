@@ -14,7 +14,7 @@ import matplotlib.font_manager as fm
 import os
 
 @st.cache_data
-def fontRegistered(fontname):
+def fontRegistered():
     font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
 
