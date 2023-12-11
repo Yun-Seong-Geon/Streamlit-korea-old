@@ -121,7 +121,7 @@ def graphs(fontname):
     노령화지수총인구수관계그래프(fontname)
     st.divider()
 
-font_path = './font/SKYBORI.ttf'
+font_path = '../font/SKYBORI.ttf'
 font_prop = fm.FontProperties(fname=font_path)
 font = font_prop.get_name() 
 

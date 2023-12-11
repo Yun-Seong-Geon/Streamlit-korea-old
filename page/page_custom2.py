@@ -10,7 +10,7 @@ from streamlit_lottie import st_lottie
 
 import matplotlib.font_manager as fm 
 
-font_path = './font/SKYBORI.ttf'
+font_path = '../font/SKYBORI.ttf'
 font_prop = fm.FontProperties(fname=font_path)
 font = font_prop.get_name()
 add_page_title()
