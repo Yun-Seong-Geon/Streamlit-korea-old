@@ -121,7 +121,7 @@ def graphs(fontname):
     노령화지수총인구수관계그래프(fontname)
     st.divider()
 
-font = "../font/SKYBORI.ttf"
+font = "./font/SKYBORI.ttf"
 
 def main():
     with st.spinner('그래프 불러오는중..'):
