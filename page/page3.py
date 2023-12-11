@@ -10,7 +10,6 @@ import time
 from page import page2 as two
 import matplotlib.font_manager as fm
 
-import matplotlib.font_manager as fm 
 
 import os
 
@@ -23,7 +22,6 @@ def fontRegistered(fontname):
         fm.fontManager.addfont(font_file)
     fm._rebuild()  # 폰트 매니저를 재구축
     fm._load_fontmanager(try_read_cache=False)
-    plt.rc('font', family=fontname)  # 전역 폰트 설정
 
 font = 'SKYBORY'
 
