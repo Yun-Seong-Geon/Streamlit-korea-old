@@ -12,19 +12,20 @@ import matplotlib.font_manager as fm
 
 
 import os
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
 
-@st.cache(allow_output_mutation=True)
-def fontRegistered(fontname):
-    font_dirs = [os.getcwd() + '/font']   # 사용자 정의 폰트 디렉토리 경로
+@st.cache_data
+def fontRegistered():
+    font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
 
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
-    fm._rebuild()  # 폰트 매니저를 재구축
-    plt.rc('font', family=fontname)  # 전역 폰트 설정
+    fm._load_fontmanager(try_read_cache=False)
 
-font = 'SKYBORY'
- 
+
 add_page_title()
 
 show_pages(

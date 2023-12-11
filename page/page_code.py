@@ -6,21 +6,21 @@ import matplotlib.pyplot as plt
 from st_pages import Page, Section, show_pages, add_page_title
 import matplotlib.font_manager as fm 
 import font as fn
-from st_aggrid import AgGrid
-import os
 
-@st.cache(allow_output_mutation=True)
-def fontRegistered(fontname):
+import os
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
+
+@st.cache_data
+def fontRegistered():
     font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
 
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
-    fm._rebuild()  # 폰트 매니저를 재구축
-    plt.rc('font', family=fontname)  # 전역 폰트 설정
+    fm._load_fontmanager(try_read_cache=False)
 
-font = 'SKYBORY'
-    
 add_page_title()
 
 show_pages(
@@ -135,9 +135,10 @@ def graphs(fontname):
     st.divider()
 
 def main():
-    font_dirs = [os.getcwd() + '/font']
-    st.title(font_dirs)
-    with st.spinner('그래프 불러오는중..'):
+    fontRegistered()
+    fontNames = [f.name for f in fm.fontManager.ttflist]
+    font = st.selectbox("폰트 선택", unique(fontNames))  
+    with st.spinner('그래프 불러오는중..'):  
         graphs(font)
     pass
 

@@ -12,18 +12,19 @@ import matplotlib.font_manager as fm
 
 
 import os
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
 
-@st.cache(allow_output_mutation=True)
-def fontRegistered(fontname):
-    font_dirs = [os.getcwd() + '/font']   # 사용자 정의 폰트 디렉토리 경로
+@st.cache_data
+def fontRegistered():
+    font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
 
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
-    fm._rebuild()  # 폰트 매니저를 재구축
-    plt.rc('font', family=fontname)  # 전역 폰트 설정
+    fm._load_fontmanager(try_read_cache=False)
 
-font = 'SKYBORY'
 
 add_page_title()
 
@@ -42,7 +43,7 @@ data = pd.read_csv('경상남도 김해시_통계지수_노령화지수_20211231
 df = data.copy()
 colors = ['blue', 'green', 'red', 'purple', 'orange']
 
-def draw_graph(selected_city,selected_color):
+def draw_graph(selected_city,selected_color,font):
     # 선택된 시도에 해당하는 데이터만 필터링합니다.
     filtered_df = df[df['시도명'] == selected_city]
     plt.rc('font', family=font)
@@ -65,7 +66,10 @@ def main():
     selected_city = st.selectbox('시도를 선택하세요.', city_list)
 
     # 그래프 그리는 함수를 호출합니다.
-    draw_graph(selected_city,selected_color)
+    fontRegistered()
+    fontNames = [f.name for f in fm.fontManager.ttflist]
+    font = st.selectbox("폰트 선택", unique(fontNames)) 
+    draw_graph(selected_city,selected_color,font)
     pass
 
 

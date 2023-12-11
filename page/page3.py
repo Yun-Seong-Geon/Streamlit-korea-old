@@ -12,6 +12,9 @@ import matplotlib.font_manager as fm
 
 
 import os
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
 
 @st.cache_data
 def fontRegistered():
@@ -22,7 +25,7 @@ def fontRegistered():
         fm.fontManager.addfont(font_file)
     fm._load_fontmanager(try_read_cache=False)
 
-font = 'SKYBORY'
+
 
 add_page_title()
 
@@ -73,9 +76,6 @@ x축은 총 인구수와 같은 지수나 수치를 나타낼 수 있으며, y�
 마지막 그래프는 버블 크기가 세 번째 변수(예를 들어 인구 규모)를 나타내는 버블 산점도로 보입니다. 
 이 유형의 차트는 축상의 두 수치 변수와 버블 크기에 의해 나타나는 세 번째 차원의 데이터에 대한 정보를 제공할 수 있습니다.
 '''
-def unique(list):
-    x = np.array(list)
-    return np.unique(x)
 
 def main():
     fontRegistered()

@@ -12,18 +12,19 @@ import matplotlib.font_manager as fm
 
 
 import os
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
 
-@st.cache(allow_output_mutation=True)
-def fontRegistered(fontname):
+@st.cache_data
+def fontRegistered():
     font_dirs = [os.getcwd() + '/font']  # 사용자 정의 폰트 디렉토리 경로
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
 
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
-    fm._rebuild()  # 폰트 매니저를 재구축
-    plt.rc('font', family=fontname)  # 전역 폰트 설정
+    fm._load_fontmanager(try_read_cache=False)
 
-font = 'SKYBORY'
  
 add_page_title()
 
@@ -41,7 +42,7 @@ show_pages(
 data = pd.read_csv('경상남도 김해시_통계지수_노령화지수_20211231.csv',encoding = 'CP949')
 df = data.copy()
 
-def plot_elderly_population_ratio(df, city_name):
+def plot_elderly_population_ratio(df, city_name,font):
     """
     주어진 '시도명'에 따라 해당 시군구의 총 인구수 대비 노인 인구 비율을 막대 그래프로 보여주는 함수입니다.
     """
@@ -67,10 +68,12 @@ def main():
 
     # '시도명' 컬럼의 고유값으로 셀렉트박스를 만듭니다.
     selected_city = st.selectbox('시도를 선택하세요.', df['시도명'].unique())
-
+    fontRegistered()
+    fontNames = [f.name for f in fm.fontManager.ttflist]
+    font = st.selectbox("폰트 선택", unique(fontNames)) 
     # 그래프 그리는 함수를 호출하고 Streamlit에 그래프를 표시합니다.
     if st.button('그래프 그리기'):
-        fig = plot_elderly_population_ratio(df, selected_city)
+        fig = plot_elderly_population_ratio(df, selected_city,font)
         st.pyplot(fig)
 
 
