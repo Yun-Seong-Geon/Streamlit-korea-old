@@ -11,7 +11,7 @@ from st_aggrid import AgGrid
 add_page_title()
 
 
-font = 'AppleGothic'
+font = 'NanumGothic'
 show_pages(
     [
         Page("app.py", "메인화면", "🏠"),

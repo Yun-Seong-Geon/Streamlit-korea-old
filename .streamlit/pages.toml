@@ -1,0 +1,21 @@
+[[pages]]
+path = "streamlit_app.py"
+name = "Home"
+icon = "🏠"
+
+[[pages]]
+path = "other_pages/page2.py"
+name = "Page 2"
+icon = ":books:"
+
+[matplotlib]
+font.family = NanumBarunGothic
+font.size = 12
+axes.unicode_minus = False
+
+[theme]
+primaryColor="#F63366"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#F0F2F6"
+textColor="#262730"
+font= "../font/SKYBORI.ttf"
