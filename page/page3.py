@@ -8,9 +8,13 @@ from st_aggrid import AgGrid
 from streamlit_lottie import st_lottie 
 import time
 from page import page2 as two
+import matplotlib.font_manager as fm
 
 import matplotlib.font_manager as fm 
 
+font_path = './font/SKYBORI.ttf'
+font_prop = fm.FontProperties(fname=font_path)
+font = font_prop.get_name()
 add_page_title()
 
 show_pages(
@@ -64,23 +68,23 @@ x축은 총 인구수와 같은 지수나 수치를 나타낼 수 있으며, y�
 def main():
     st.subheader('고령화 지수 관련 데이터를 분석 및 활용하는 홈페이지입니다.')
     st.divider()
-    two.노령화지수분포그래프('SKYBORI')
+    two.노령화지수분포그래프(font)
     st.write(문구1)
     
     st.divider()
-    two.시도별고령인구그래프('SKYBORI')
+    two.시도별고령인구그래프(font)
     st.write(문구2)
     
     st.divider()
-    two.시도별노령화지수평균('SKYBORI')
+    two.시도별노령화지수평균(font)
     st.write(문구3)
     
     st.divider()
-    two.노령화지수총인구수관계그래프('SKYBORI')
+    two.노령화지수총인구수관계그래프(font)
     st.write(문구4)
     
     st.divider()
-    two.고령화지수유소년관계그래프('SKYBORI')
+    two.고령화지수유소년관계그래프(font)
     st.write(문구5)
     
     pass

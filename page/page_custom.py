@@ -10,6 +10,9 @@ from streamlit_lottie import st_lottie
 
 import matplotlib.font_manager as fm 
 
+font_path = './font/SKYBORI.ttf'
+font_prop = fm.FontProperties(fname=font_path)
+font = font_prop.get_name() 
 add_page_title()
 
 show_pages(
@@ -30,7 +33,7 @@ colors = ['blue', 'green', 'red', 'purple', 'orange']
 def draw_graph(selected_city,selected_color):
     # 선택된 시도에 해당하는 데이터만 필터링합니다.
     filtered_df = df[df['시도명'] == selected_city]
-    plt.rc('font', family='SKYBORI')
+    plt.rc('font', family=font)
     # 그래프를 그립니다. 여기서는 예시로 산점도를 그리겠습니다.
     fig, ax = plt.subplots()
     sns.scatterplot(x='유소년(14세 이하)', y='노령화지수(퍼센트)', data=filtered_df, ax=ax,color=selected_color)

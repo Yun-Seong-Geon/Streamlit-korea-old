@@ -10,6 +10,9 @@ from streamlit_lottie import st_lottie
 
 import matplotlib.font_manager as fm 
 
+font_path = './font/SKYBORI.ttf'
+font_prop = fm.FontProperties(fname=font_path)
+font = font_prop.get_name()
 add_page_title()
 
 show_pages(
@@ -37,7 +40,7 @@ def plot_elderly_population_ratio(df, city_name):
     city_data['노령인구비율'] = city_data['고령인구(65세 이상)'] / city_data['총인구수(명)'] * 100
 
     # 시군구명을 x축으로 하고 노령인구비율을 y축으로 하는 막대 그래프
-    plt.rc('font', family='SKYBORI')
+    plt.rc('font', family=font)
     fig, ax = plt.subplots()
     ax.bar(city_data['시군구명'], city_data['노령인구비율'], color='skyblue')
     plt.xticks(rotation=45)

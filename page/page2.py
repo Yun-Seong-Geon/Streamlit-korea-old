@@ -10,6 +10,9 @@ from st_aggrid import AgGrid
 
 add_page_title()
 
+font_path = './font/SKYBORI.ttf'
+font_prop = fm.FontProperties(fname=font_path)
+font = font_prop.get_name()
 show_pages(
     [
         Page("app.py", "메인화면", "🏠"),
@@ -92,7 +95,7 @@ def graphs(fontname):
 
 def main():
     with st.spinner('그래프 불러오는중..'):
-        graphs('SKYBORI')
+        graphs(font)
 
 
 if __name__ == '__main__':
