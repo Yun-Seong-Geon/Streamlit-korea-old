@@ -30,6 +30,7 @@ show_pages(
         Page("./page/page_custom.py", "사용자 그래프 (1)", ":books:"),
         Page("./page/page_custom2.py", "사용자 그래프 (2)", ":books:"),
         Page("./page/page2.py", "그래프 확인", ":books:"),
+        Page("./page/page_code.py", "그래프 코드 확인", ":books:"),
         Page("./page/page3.py",'데이터분석 설명' ,icon="💪"),
     ]
 )
@@ -53,7 +54,6 @@ def 노령화지수분포그래프(fontname):
     plt.title('노령화 지수 분포')
     plt.xlabel('노령화 지수(퍼센트)')
     plt.ylabel('빈도')
-    plt.show()
     st.pyplot(fig)
 
 def 시도별고령인구그래프(fontname):
@@ -76,7 +76,6 @@ def 시도별고령인구그래프(fontname):
     plt.xticks(rotation=45)
     plt.xlabel('시도명')
     plt.ylabel('고령인구 비율 (%)')
-    plt.show()
     st.pyplot(fig)
 
 def 시도별노령화지수평균(fontname):
@@ -96,7 +95,6 @@ def 시도별노령화지수평균(fontname):
     plt.title('노령화 지수와 총인구수의 관계')
     plt.xlabel('총인구수(명)')
     plt.ylabel('노령화 지수(퍼센트)')
-    plt.show()
     st.pyplot(fig)
 
 def 노령화지수총인구수관계그래프(fontname):
@@ -120,7 +118,6 @@ def 노령화지수총인구수관계그래프(fontname):
     plt.title('시도별 노령화지수 평균')
     plt.xlabel('시도명')
     plt.ylabel('노령화지수(퍼센트) 평균')
-    plt.show()
     st.pyplot(fig)
     
 def graphs(fontname):
@@ -137,7 +134,7 @@ def graphs(fontname):
 def main():
     fontRegistered()
     fontNames = [f.name for f in fm.fontManager.ttflist]
-    font = st.selectbox("폰트 선택", unique(fontNames))  
+    font = st.selectbox("폰트 선택 (한글의 경우 'SKYBORI'를 선택해주세요) ", unique(fontNames))  
     with st.spinner('그래프 불러오는중..'):  
         graphs(font)
     pass

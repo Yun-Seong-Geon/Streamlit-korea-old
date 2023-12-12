@@ -35,6 +35,7 @@ show_pages(
         Page("./page/page_custom.py", "사용자 그래프 (1)", ":books:"),
         Page("./page/page_custom2.py", "사용자 그래프 (2)", ":books:"),
         Page("./page/page2.py", "그래프 확인", ":books:"),
+        Page("./page/page_code.py", "그래프 코드 확인", ":books:"),
         Page("./page/page3.py",'데이터분석 설명' ,icon="💪"),
     ]
 )
@@ -70,13 +71,15 @@ def main():
     selected_city = st.selectbox('시도를 선택하세요.', df['시도명'].unique())
     fontRegistered()
     fontNames = [f.name for f in fm.fontManager.ttflist]
-    font = st.selectbox("폰트 선택", unique(fontNames)) 
+    font = st.selectbox("폰트 선택 (한글의 경우 'SKYBORI'를 선택해주세요) ", unique(fontNames)) 
     # 그래프 그리는 함수를 호출하고 Streamlit에 그래프를 표시합니다.
     if st.button('그래프 그리기'):
-        fig = plot_elderly_population_ratio(df, selected_city,font)
-        st.pyplot(fig)
+        with st.spinner('그래프 불러오는중..'):
+            fig = plot_elderly_population_ratio(df, selected_city,font)
+            st.pyplot(fig)
 
 
 if __name__ == '__main__':
-    main()
+    with st.spinner('로딩 중'):
+        main()
     

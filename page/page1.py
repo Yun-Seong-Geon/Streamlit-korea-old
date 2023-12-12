@@ -35,6 +35,7 @@ show_pages(
         Page("./page/page_custom.py", "사용자 그래프 (1)", ":books:"),
         Page("./page/page_custom2.py", "사용자 그래프 (2)", ":books:"),
         Page("./page/page2.py", "그래프 확인", ":books:"),
+        Page("./page/page_code.py", "그래프 코드 확인", ":books:"),
         Page("./page/page3.py",'데이터분석 설명' ,icon="💪"),
     ]
 )
